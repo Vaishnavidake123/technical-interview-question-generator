@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Interview Question Generator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #007bff;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        select {
+            width: calc(100% - 16px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #generated-questions {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        #generated-questions h2 {
+            color: #28a745;
+            text-align: left;
+            margin-top: 0;
+        }
+        #generated-questions ul {
+            list-style: none;
+            padding: 0;
+        }
+        #generated-questions li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        #generated-questions li:last-child {
+            border-bottom: none;
+        }
+        .note {
+            color: #777;
+            font-size: 0.9em;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Technical Interview Question Generator</h1>
+        <p>Select the role and experience level to generate relevant interview questions.</p>
+
+        <h2>Generate Questions</h2>
+        <label for="role">Target Role:</label>
+        <select id="role" name="role">
+            <option value="">Select Role</option>
+            <option value="web-developer">Web Developer</option>
+            <option value="data-scientist">Data Scientist</option>
+            <option value="cybersecurity-analyst">Cybersecurity Analyst</option>
+        </select>
+
+        <label for="experience">Experience Level:</label>
+        <select id="experience" name="experience">
+            <option value="">Select Level</option>
+            <option value="entry">Entry-Level</option>
+            <option value="junior">Junior-Level</option>
+            <option value="mid">Mid-Level</option>
+            <option value="senior">Senior-Level</option>
+            <option value="lead">Lead-Level</option>
+        </select>
+
+        <button onclick="generateQuestions()">Generate Questions</button>
+
+        <div id="generated-questions" style="display: none;">
+            <h2>Generated Interview Questions:</h2>
+            <ul id="question-list">
+                </ul>
+        </div>
+
+        <p class="note">Note: This is a static HTML interface. The actual generation of dynamic questions using LLM APIs would require backend logic and API integration.</p>
+    </div>
+
+    <script>
+        function generateQuestions() {
+            const role = document.getElementById("role").value;
+            const experience = document.getElementById("experience").value;
+            const questionList = document.getElementById("question-list");
+            const generatedQuestionsDiv = document.getElementById("generated-questions");
+
+            let questions = [];
+
+            if (role === "web-developer") {
+                if (experience === "entry") {
+                    questions = [
+                        "What is the difference between HTML and HTML5?",
+                        "Explain the box model in CSS.",
+                        "How do you include JavaScript in an HTML document?",
+                        "What is the purpose of media queries?",
+                        "What does async and defer do in script tags?"
+                    ];
+                } else if (experience === "junior") {
+                    questions = [
+                        "What are semantic tags in HTML and why are they important?",
+                        "Explain how flexbox works. What is the difference between justify-content and align-items?",
+                        "How does the DOM work? What is event delegation?",
+                        "What’s the difference between == and === in JavaScript?",
+                        "Explain CORS and how it works."
+                    ];
+                } else if (experience === "mid") {
+                    questions = [
+                        "How do you optimize a web page for performance?",
+                        "What is the difference between SSR and CSR?",
+                        "Describe how React works under the hood (Virtual DOM, diffing).",
+                        "How do you manage state in a large-scale React application?",
+                        "What security considerations do you keep in mind while developing web applications (e.g., XSS, CSRF)?"
+                    ];
+                } else if (experience === "senior") {
+                    questions = [
+                        "How do you approach designing a scalable front-end architecture for a large application?",
+                        "What strategies do you use for code splitting and lazy loading in SPAs?",
+                        "Describe a time when you improved web performance on a production system.",
+                        "How do you ensure accessibility (a11y) and SEO compliance in modern web apps?",
+                        "Explain your experience with CI/CD pipelines for front-end deployment."
+                    ];
+                } else if (experience === "lead") {
+                    questions = [
+                        "How do you guide your team in selecting the right frontend stack for a new product?",
+                        "Describe your process for code reviews and enforcing quality standards.",
+                        "How do you manage technical debt while maintaining delivery timelines?",
+                        "How would you plan a migration from legacy code to a modern frontend framework?",
+                        "Describe a situation where you had to align frontend decisions with backend or DevOps teams."
+                    ];
+                }
+            } else if (role === "data-scientist") {
+                if (experience === "entry") {
+                    questions = [
+                        "What is the difference between supervised and unsupervised learning?",
+                        "Define overfitting and underfitting.",
+                        "What are the assumptions of linear regression?",
+                        "What’s the difference between mean, median, and mode?",
+                        "What libraries do you use for data manipulation in Python?"
+                    ];
+                } else if (experience === "junior") {
+                    questions = [
+                        "Explain how decision trees work.",
+                        "What is cross-validation and why is it important?",
+                        "How do you deal with missing data?",
+                        "Explain the difference between bagging and boosting.",
+                        "What’s the difference between classification and clustering?"
+                    ];
+                } else if (experience === "mid") {
+                    questions = [
+                        "How do you evaluate the performance of a classification model?",
+                        "What’s the intuition behind PCA and when would you use it?",
+                        "Explain the ROC curve and AUC.",
+                        "How do you deploy a machine learning model into production?",
+                        "Describe a scenario where feature engineering made a significant difference in model performance."
+                    ];
+                } else if (experience === "senior") {
+                    questions = [
+                        "How do you handle concept drift in deployed ML models?",
+                        "Describe a time you redesigned a data pipeline for efficiency or scalability.",
+                        "How do you balance model performance vs. interpretability?",
+                        "What is your approach to data governance and quality in large organizations?",
+                        "How do you ensure your model complies with privacy regulations (e.g., GDPR)?"
+                    ];
+                } else if (experience === "lead") {
+                    questions = [
+                        "How do you decide between classical ML models and deep learning approaches?",
+                        "How do you collaborate with product and engineering teams to translate business problems into ML solutions?",
+                        "Describe how you built and scaled a data science team.",
+                        "What steps do you follow for end-to-end model lifecycle management (design, deploy, monitor)?",
+                        "How do you prioritize multiple ML projects with limited resources?"
+                    ];
+                }
+            } else if (role === "cybersecurity-analyst") {
+                if (experience === "entry") {
+                    questions = [
+                        "What is the difference between a threat, a vulnerability, and a risk?",
+                        "What is a firewall and how does it work?",
+                        "Define phishing and give an example.",
+                        "What’s the difference between symmetric and asymmetric encryption?",
+                        "What are some common types of malware?"
+                    ];
+                } else if (experience === "junior") {
+                    questions = [
+                        "How would you secure a login page?",
+                        "Explain how HTTPS works.",
+                        "What tools do you use for network monitoring and why?",
+                        "How do you detect and respond to a brute force attack?",
+                        "What are some common OWASP Top 10 vulnerabilities?"
+                    ];
+                } else if (experience === "mid") {
+                    questions = [
+                        "Walk me through how you would investigate a security incident.",
+                        "What is the difference between IDS and IPS?",
+                        "Explain the process of vulnerability assessment and penetration testing.",
+                        "What’s your approach to securing APIs?",
+                        "How do you manage and rotate encryption keys in a secure environment?"
+                    ];
+                } else if (experience === "senior") {
+                    questions = [
+                        "Describe your approach to incident response planning and post-incident analysis.",
+                        "How do you assess third-party risks and secure vendor integrations?",
+                        "What is your experience with SIEM tools? How do you tune rules to reduce false positives?",
+                        "How do you manage endpoint security across a distributed workforce?",
+                        "Explain how you’d perform a red team vs. blue team exercise."
+                    ];
+                } else if (experience === "lead") {
+                    questions = [
+                        "How do you design and lead a company-wide security strategy?",
+                        "What’s your approach to communicating security risks to non-technical stakeholders?",
+                        "How do you build and maintain a security operations team (SOC)?",
+                        "How do you stay ahead of evolving threats (e.g., zero-days, ransomware-as-a-service)?",
+                        "Describe a scenario where you had to lead a breach investigation and report findings to executives or regulators."
+                    ];
+                }
+            } else {
+                questions = ["Please select a role and experience level."];
+            }
+
+            questionList.innerHTML = ""; // Clear any previous questions
+
+            questions.forEach((question, index) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${index + 1}. ${question}`;
+                questionList.appendChild(listItem);
+            });
+
+            generatedQuestionsDiv.style.display = "block";
+        }
+    </script>
+</body>
+</html>
